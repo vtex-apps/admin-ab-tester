@@ -1,6 +1,6 @@
 {
-  "name": "admin-example",
-  "vendor": "vtex",
+  "name": "admin-abtester",
+  "vendor": "vtexarg",
   "version": "0.0.7",
   "title": "Example Admin App",
   "description": "",
@@ -15,6 +15,9 @@
     "react": "3.x",
     "admin": "0.x",
     "messages": "1.x",
-    "docs": "0.x"
-  }
+    "docs": "0.x",
+    "node": "6.x",
+    "graphql": "1.x"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

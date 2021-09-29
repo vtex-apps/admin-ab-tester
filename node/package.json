@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "co-body": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/co-body": "^0.0.3",
+    "@types/node": "12.x",
+    "@vtex/api": "6.45.4",
+    "eslint": "^6.3.0",
+    "eslint-config-vtex": "^11.0.0",
+    "prettier": "^1.18.2",
+    "typescript": "3.9.7"
+  },
+  "resolutions": {
+    "**/**/lodash": "^4.17.19"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit --pretty"
+  },
+  "version": "0.7.2"
+}
