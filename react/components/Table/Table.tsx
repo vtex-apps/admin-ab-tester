@@ -85,7 +85,9 @@ const ABTestTable = () => {
         width: 100,
         cellRenderer: () => {
           return (
-            <IconDelete onClick = {()=>console.log("clicked")} color="currentColor" />
+            <Button variation='tertiary' onClick={() => console.log("clicked")}>
+              <IconDelete color="currentColor" />
+            </Button>
           )
         },
       }
