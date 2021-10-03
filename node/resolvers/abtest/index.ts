@@ -1,6 +1,6 @@
 export const queries = {
-  getStatus: async (_: unknown, __: unknown, ctx: Context): Promise<any> => {
-    return await ctx.clients.abtest.getStatus()
+  getTests: async (_: unknown, __: unknown, ctx: Context): Promise<any> => {
+    return await ctx.clients.abtest.getTests()
   },
 }
 

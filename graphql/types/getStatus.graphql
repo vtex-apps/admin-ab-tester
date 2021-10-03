@@ -1,4 +1,0 @@
-type GetStatusResponse{
-  code: String
-  message: String
-}

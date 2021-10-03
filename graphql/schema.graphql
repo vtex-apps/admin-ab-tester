@@ -1,8 +1,7 @@
 type Query {
-  getStatus: GetStatusResponse
+  getTests: GetTestsResponse
 }
 
 type Mutation {
-  "initialize a abtest"
-  initialize(workspace: String!, proportion: Int!, hours: Int!, type: String): String
+  initialize(workspace: String!, proportion: Int!, hours: Int!, type: String): CreateTestResponse
 }

@@ -1,0 +1,4 @@
+type CreateTestResponse{
+  status: String,
+  data: String
+}

@@ -1,0 +1,5 @@
+mutation createTest($workspace: String!, $proportion: Int!, $hours: Int!, $type: String){
+  initialize(workspace:$workspace, proportion:$proportion, hours: $hours, type: $type){
+    status, data
+  }
+}

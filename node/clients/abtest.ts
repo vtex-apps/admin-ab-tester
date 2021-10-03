@@ -7,7 +7,7 @@ export default class ABtest extends ExternalClient {
     })
   }
 
-  public async getStatus() {
+  public async getTests() {
     const res = await this.http.getRaw(`/${this.context.account}/master/_v/private/abtesting/status`, {
       headers: {
         Authorization: `Bearer ${this.context.adminUserAuthToken}`,
@@ -17,11 +17,6 @@ export default class ABtest extends ExternalClient {
   }
 
   public async initialize(workspace: string, proportion: number, hours: number, type: string) {
-    console.log("workspace---", workspace)
-    console.log("proportion---", proportion)
-    console.log("hours---", hours)
-    console.log("type---", type)
-
     const payload = {
       "InitializingWorkspaces": workspace,    // the workspaces that will be tested; no need to include master
       "Proportion": proportion,    // 100 times the percentage of traffic you want the master workspace to receive during the first hours of test

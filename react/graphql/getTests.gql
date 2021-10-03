@@ -1,0 +1,11 @@
+query getTests{
+  getTests{
+    data {
+      ABTestBeginning
+      WorkspaceA
+      WorkspaceB
+      Winner
+    }
+    status
+  }
+}

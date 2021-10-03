@@ -1,9 +1,10 @@
 {
-  "admin-example.navigation.label-group": "Admins de exemplo",
-  "admin-example.navigation.label-details": "Exemplo de detalhes",
-  "admin-example.navigation.label-table": "Exemplo de tabela",
-  "admin-example.navigation.search.kws": "teste, mock, fake",
-  "admin-example.navigation.details.search.kws": "detalhe, mock, test, oi",
-  "admin-example.navigation.table.search.kws": "tabela, mock, test, tchau",
-  "admin-example.hello-world": "Admin de exemplo"
+  "admin/admin-abtest.navigation.label": "AB Tests",
+  "admin/admin.app.abtest.title": "Admin AB Tests",
+  "admin/admin.app.abtest.form.label.workspaceName": "Nome Workspace",
+  "admin/admin.app.abtest.form.label.creationLabel": "Data de criação",
+  "admin/admin.app.abtest.form.label.winnerLabel": "Vencedor",
+  "admin/admin.app.abtest.form.label.createTestAB": "Criar Novo Teste AB",
+  "admin/admin.app.abtest.form.label.invalidWorkspaceName": "That's not a valid workspace name. Please use only lowercase letters and numbers",
+  "admin/admin.app.abtest.form.createTest.success": "Test A/B criado com sucesso"
 }

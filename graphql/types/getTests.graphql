@@ -1,0 +1,11 @@
+type GetTestsResponse{
+  data: [DataResponse]
+  status: String
+}
+
+type DataResponse {
+  ABTestBeginning: String
+  WorkspaceA: String
+  WorkspaceB: String
+  Winner: String
+}
