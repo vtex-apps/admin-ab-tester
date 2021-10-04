@@ -15,19 +15,17 @@ declare global {
     handleNewModal: (isOpen: boolean, type: "CREATE" | "DELETE") => void
     modalOpen: Modal
     createNewTest: (test: NewTest) => void
+    finishTest: (workspace: string) => void
     loading: boolean
     error: string
     success: string
     setError: (error: string) => void
     clearGeneralState: () => void
   }
-  interface GeneralState{
+  interface GeneralState {
     loading: boolean,
     error: string,
     success: string
-  }
-  interface RowHeader {
-    rowData: { name: string }
   }
   interface Modal {
     isOpen: boolean,
@@ -44,5 +42,8 @@ declare global {
     proportion: number
     hours: number
     type: string
+  }
+  interface RowHeader {
+    rowData: ABTest
   }
 }

@@ -1,0 +1,5 @@
+mutation finishTest($workspace: String!){
+  finishTest(workspace:$workspace){
+    status, data
+  }
+}

@@ -12,4 +12,11 @@ export const mutations = {
   ): Promise<any> => {
     return await ctx.clients.abtest.initialize(workspace, proportion, hours, type)
   },
+  finishTest: async (
+    _: unknown,
+    { workspace }: any,
+    ctx: Context
+  ): Promise<any> => {
+    return await ctx.clients.abtest.finishTest(workspace)
+  },
 }

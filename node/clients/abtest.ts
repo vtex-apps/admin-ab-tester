@@ -23,11 +23,18 @@ export default class ABtest extends ExternalClient {
       "Hours": hours,    // the number of hours the test will run with the initially fixed proportion (after that, it starts to update the proportion accordingly to each workspace's performance
       "Type": type  // you can also select "revenue", in which case the ab-testing system will look at each workspace's revenue (and not conversion) when updating the traffic
     }
-    const res = await this.http.postRaw(`/${this.context.account}/master/_v/private/abtesting/initialize`, payload, {
+    return await this.http.postRaw(`/${this.context.account}/master/_v/private/abtesting/initialize`, payload, {
       headers: {
         Authorization: `Bearer ${this.context.adminUserAuthToken}`,
       },
     })
-    return res
+  }
+
+  public async finishTest(workspace: string) {
+    return await this.http.getRaw(`/${this.context.account}/master/_v/private/abtesting/finish/${workspace}`, {
+      headers: {
+        Authorization: `Bearer ${this.context.adminUserAuthToken}`,
+      },
+    })
   }
 }

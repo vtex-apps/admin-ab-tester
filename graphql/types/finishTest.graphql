@@ -1,0 +1,4 @@
+type FinishTestResponse{
+  status: String,
+  data: String
+}

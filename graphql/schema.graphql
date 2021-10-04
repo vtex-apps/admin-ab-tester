@@ -4,4 +4,5 @@ type Query {
 
 type Mutation {
   initialize(workspace: String!, proportion: Int!, hours: Int!, type: String): CreateTestResponse
+  finishTest(workspace: String!): FinishTestResponse
 }

@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 
 import getTestsGQL from './../graphql/getTests.gql'
 import createTestMutation from './../graphql/createTest.gql'
+import finishTestMutation from './../graphql/finishTest.gql'
 
 export const ABTestContext = createContext({} as ABTestContextInterface)
 
@@ -18,7 +19,7 @@ export function ABTestProvider({ children }: ContextChildren) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-  const { loading: loadingGetTests, error: errorGetTests, data: dataGetTests } = useQuery(getTestsGQL)
+  const getTestsQuery = useQuery(getTestsGQL)
 
   const [createTest,
     {
@@ -26,6 +27,13 @@ export function ABTestProvider({ children }: ContextChildren) {
       error: errorCreate,
       data: dataCreate,
     }] = useMutation(createTestMutation)
+
+  const [finishTestGQL,
+    {
+      loading: loadingFinish,
+      error: errorFinish,
+      data: dataFinish,
+    }] = useMutation(finishTestMutation)
 
 
   const [modalOpen, setModalOpen] = useState({
@@ -46,36 +54,53 @@ export function ABTestProvider({ children }: ContextChildren) {
     setLoading(false)
   }
 
+  async function getTests() {
+    const dataFromQuery = await getTestsQuery.refetch()
+    const response = dataFromQuery.data.getTests.data
+    //TODO: format date
+    setTests(response)
+  }
+
   useEffect(() => {
-    loadingGetTests && setLoading(true)
-    errorGetTests && setError(errorCreate.graphQLErrors[0].extensions?.exception?.response?.data)
-    if (dataGetTests) {
-      setTests(dataGetTests.getTests?.data)
+    getTestsQuery.loading && setLoading(true)
+    if (getTestsQuery.error) {
       setLoading(false)
     }
-  }, [loadingGetTests, errorGetTests, dataGetTests])
-
-
-  /*  async function getTests() {
-     const dataFromQuery = await getTestsQuery.refetch()
-     console.log("data...", dataFromQuery)
-     const response = dataFromQuery.data.getTests.data
-     //TODO: format date
-     setTests(response)
-   } */
+    if (getTestsQuery.data) {
+      setTests(getTestsQuery?.data.getTests?.data)
+      setLoading(false)
+    }
+  }, [getTestsQuery.loading, getTestsQuery.error, getTestsQuery.data])
 
   const createNewTest = (newTest: NewTest) => {
     createTest({ variables: { workspace: newTest.name, proportion: Number(newTest.proportion), hours: Number(newTest.hours), type: newTest.type } })
+  }
+
+  const finishTest = (workspace: string) => {
+    finishTestGQL({ variables: { workspace: workspace } })
   }
 
   useEffect(() => {
     loadingCreate && setLoading(true)
     errorCreate && setError(errorCreate.graphQLErrors[0].extensions?.exception?.response?.data)
     if (dataCreate) {
+      setLoading(false);
+      getTests()
       setSuccess(intl.formatMessage({ id: 'admin/admin.app.abtest.form.createTest.success' }))
       handleNewModal(false, "CREATE")
     }
   }, [loadingCreate, errorCreate, dataCreate])
+
+  useEffect(() => {
+    loadingFinish && setLoading(true)
+    errorFinish && setError(errorFinish.graphQLErrors[0].extensions?.exception?.response?.data)
+    if (dataFinish) {
+      setLoading(false);
+      getTests()
+      console.log("dataFinish", dataFinish)
+      setSuccess(intl.formatMessage({ id: 'admin/admin.app.abtest.form.finishTest.success' }))
+    }
+  }, [loadingFinish, errorFinish, dataFinish])
 
   return (
     <ABTestContext.Provider
@@ -84,6 +109,7 @@ export function ABTestProvider({ children }: ContextChildren) {
         handleNewModal,
         modalOpen,
         createNewTest,
+        finishTest,
         error,
         loading,
         success,

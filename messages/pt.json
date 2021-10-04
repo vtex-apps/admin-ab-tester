@@ -6,5 +6,7 @@
   "admin/admin.app.abtest.form.label.winnerLabel": "Vencedor",
   "admin/admin.app.abtest.form.label.createTestAB": "Criar Novo Teste AB",
   "admin/admin.app.abtest.form.label.invalidWorkspaceName": "That's not a valid workspace name. Please use only lowercase letters and numbers",
-  "admin/admin.app.abtest.form.createTest.success": "Test A/B criado com sucesso"
+  "admin/admin.app.abtest.form.createTest.success": "Test A/B criado com sucesso",
+  "admin/admin.app.abtest.form.finishTest.success": "Test A/B concluído com sucesso",
+  "admin/admin.app.abtest.form.finishTest.action": "Concluir Test A/B"
 }

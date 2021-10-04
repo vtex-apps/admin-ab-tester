@@ -8,7 +8,7 @@ import {
   Input,
   Dropdown,
   Button,
-  IconDelete,
+  // ModalDialog,
   ActionMenu,
   IconExternalLink
 } from 'vtex.styleguide'
@@ -19,7 +19,7 @@ import { useABTestContext } from '../../context'
 import { checkWorkspaceName } from "./../../utils"
 
 const ABTestTable = () => {
-  const { tests, handleNewModal, modalOpen, createNewTest, error, setError, success, clearGeneralState, loading } = useABTestContext()
+  const { tests, handleNewModal, modalOpen, createNewTest, error, setError, success, clearGeneralState, loading, finishTest } = useABTestContext()
 
   const { account } = useRuntime()
 
@@ -80,19 +80,20 @@ const ABTestTable = () => {
             </Tag>
           )
         },
-      },
-      Actions: {
-        width: 100,
-        cellRenderer: () => {
-          return (
-            <Button variation='tertiary' onClick={() => console.log("clicked")}>
-              <IconDelete color="currentColor" />
-            </Button>
-          )
-        },
       }
     },
   }
+
+  const lineActions = [
+    {
+      label: ({ rowData }: RowHeader) => `${intl.formatMessage({ id: 'admin/admin.app.abtest.form.finishTest.action' })} ${rowData.WorkspaceB}`,
+      isDangerous: true,
+      onClick: ({ rowData }: RowHeader) => {
+        console.log(rowData)
+        finishTest(rowData.WorkspaceB)
+      },
+    }
+  ]
 
   const selectOptions = [
     { value: 'revenue', label: 'Revenue' },
@@ -116,11 +117,17 @@ const ABTestTable = () => {
             {success}
           </Alert>
         }
+        {error &&
+          <Alert type={'error'} onClose={() => clearGeneralState()}>
+            {error}
+          </Alert>
+        }
       </div>
       <Table
         fullWidth
         schema={defaultSchema}
         items={tests}
+        lineActions={lineActions}
         loading={loading}
         toolbar={{
           newLine: {
