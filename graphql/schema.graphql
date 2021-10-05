@@ -1,8 +1,11 @@
 type Query {
   getTests: GetTestsResponse
+  getData(key: String!): String
+  @cacheControl(scope: PUBLIC, maxAge: MEDIUM)
 }
 
 type Mutation {
   initialize(workspace: String!, proportion: Int!, hours: Int!, type: String): CreateTestResponse
   finishTest(workspace: String!): FinishTestResponse
+  saveData(key: String!, value: String!): String
 }

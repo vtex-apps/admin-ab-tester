@@ -12,6 +12,24 @@ declare global {
     weight: number;
     production: boolean;
   }
+
+  interface ABTest {
+    ABTestBeginning: string
+    Winner: string
+    WorkspaceA: string
+    WorkspaceB: string
+    ConversionA: number
+    ConversionALast24Hours: number
+    ConversionB: number
+    ConversionBLast24Hours: number
+    WorkspaceASessions: number
+    WorkspaceBSessions: number
+    WorkspaceASessionsLast24Hours: number
+    WorkspaceBSessionsLast24Hours: number
+    hours: number
+    proportion: number
+    type: string
+  }
 }
 
 

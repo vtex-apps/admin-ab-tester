@@ -1,0 +1,3 @@
+query getData($key: String!){
+    getData(key: $key)
+}

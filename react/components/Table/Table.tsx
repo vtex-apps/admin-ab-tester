@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import {
   Table,
   Tag,
@@ -30,13 +30,21 @@ const ABTestTable = () => {
     type: ""
   })
 
+
+  const isValid = () => {
+    if (checkWorkspaceName(newTest.name) && newTest.proportion && newTest.hours && newTest.type) {
+      return true
+    }
+  }
+
   const intl = useIntl()
 
   const defaultSchema = {
     properties: {
       WorkspaceB: {
+        minWidth: 200,
         title: intl.formatMessage({
-          id: 'admin/admin.app.abtest.form.label.workspaceName',
+          id: 'admin/admin.app.abtest.table.label.workspaceName',
         }),
         cellRenderer: ({ cellData }: { cellData: string }) => {
           return (
@@ -63,11 +71,55 @@ const ABTestTable = () => {
         },
       },
       ABTestBeginning: {
+        minWidth: 200,
         title: intl.formatMessage({
-          id: 'admin/admin.app.abtest.form.label.creationLabel',
+          id: 'admin/admin.app.abtest.table.label.creation',
+        })
+      },
+      ConversionA: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.conversion',
+        })
+      },
+      ConversionALast24Hours: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.conversionLastHours',
+        })
+      },
+      WorkspaceBSessions: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.sessions',
+        })
+      },
+      WorkspaceBSessionsLast24Hours: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.sessionsLastHours',
+        })
+      },
+      hours: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.hours',
+        })
+      },
+      proportion: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.proportion',
+        })
+      },
+      type: {
+        minWidth: 200,
+        title: intl.formatMessage({
+          id: 'admin/admin.app.abtest.table.label.type',
         })
       },
       Winner: {
+        minWidth: 200,
         title: intl.formatMessage({
           id: 'admin/admin.app.abtest.form.label.winnerLabel',
         }),
@@ -107,8 +159,6 @@ const ABTestTable = () => {
     setNewTest((prevState: any) => ({ ...prevState, [key]: value }))
   }
 
-  console.log("loading", loading)
-
   return (
     <>
       <div className='mv4'>
@@ -140,7 +190,7 @@ const ABTestTable = () => {
       />
       <Modal centered isOpen={modalOpen.isOpen && modalOpen.type === "CREATE"} onClose={() => handleNewModal(false, "CREATE")}>
         <div className="dark-gray">
-          <p>ACA</p>
+          <p className="f3 fw3"><FormattedMessage id="admin/admin.app.abtest.form.label.createTestAB" /></p>
           <div
             style={{
               display: 'flex',
@@ -158,7 +208,9 @@ const ABTestTable = () => {
                   test: 'workspace-input',
                 }}
                 errorMessage={error}
-                label={'TEST Nombre del workspace'}
+                label={intl.formatMessage({
+                  id: 'admin/admin.app.abtest.table.label.workspaceName',
+                })}
                 type="text"
                 onChange={(ev: EventInterface): void => {
                   handleInput("name", ev.target.value)
@@ -176,7 +228,9 @@ const ABTestTable = () => {
                   'hj-white-list': true,
                   test: 'workspace-input',
                 }}
-                label={'TEST Proporción del tráfico'}
+                label={intl.formatMessage({
+                  id: 'admin/admin.app.abtest.form.label.proportion',
+                })}
                 type="number"
                 onChange={(ev: EventInterface): void => {
                   handleInput("proportion", ev.target.value)
@@ -200,7 +254,9 @@ const ABTestTable = () => {
                   'hj-white-list': true,
                   test: 'workspace-input',
                 }}
-                label={'TEST Hours'}
+                label={intl.formatMessage({
+                  id: 'admin/admin.app.abtest.form.label.hours',
+                })}
                 type="number"
                 onChange={(ev: EventInterface): void => {
                   handleInput("hours", ev.target.value)
@@ -214,18 +270,19 @@ const ABTestTable = () => {
               }}
             >
               <Dropdown
-                label={'TEST Tipo'}
+                label={intl.formatMessage({
+                  id: 'admin/admin.app.abtest.form.label.type',
+                })}
                 options={selectOptions}
                 value={newTest.type}
                 onChange={(ev: EventInterface): void => {
                   handleInput("type", ev.target.value)
                 }}
-              // onChange={(_: any, v: String) => handleSelectChange(v)}
               />
             </div>
           </div>
           <div className={'mv4'}>
-            <Button disabled={!checkWorkspaceName(newTest.name)} variation="primary" onClick={() => createNewTest(newTest)}>
+            <Button disabled={!isValid()} variation="primary" onClick={() => createNewTest(newTest)}>
               Guardar
             </Button>
           </div>

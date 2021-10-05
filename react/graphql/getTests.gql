@@ -5,6 +5,17 @@ query getTests{
       WorkspaceA
       WorkspaceB
       Winner
+      ConversionA
+      ConversionALast24Hours
+      ConversionB
+      ConversionBLast24Hours
+      WorkspaceASessions
+      WorkspaceBSessions
+      WorkspaceASessionsLast24Hours
+      WorkspaceBSessionsLast24Hours
+      hours
+      proportion
+      type
     }
     status
   }

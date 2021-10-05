@@ -1,0 +1,3 @@
+mutation saveData($key: String!, $value: String!){
+    saveData(key: $key, value: $value)
+}

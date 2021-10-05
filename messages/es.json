@@ -1,13 +1,22 @@
 {
   "admin/admin-abtest.navigation.label": "AB Tests",
   "admin/admin.app.abtest.title": "Admin AB Tests",
-  "admin/admin.app.abtest.form.label.workspaceName": "Nombre del Workspace",
-  "admin/admin.app.abtest.form.label.creationLabel": "Fecha de creación",
   "admin/admin.app.abtest.form.label.winnerLabel": "Ganador",
   "admin/admin.app.abtest.form.label.createTestAB": "Crear Nuevo Test AB",
+  "admin/admin.app.abtest.form.label.proportion": "Proporción del tráfico",
+  "admin/admin.app.abtest.form.label.hours": "Cuántas horas durará",
+  "admin/admin.app.abtest.form.label.type": "Tipo del test",
   "admin/admin.app.abtest.form.label.invalidWorkspaceName": "No es un nombre de workspace válido. Utilice solo letras y números en minúscula",
   "admin/admin.app.abtest.form.createTest.success": "Test A/B creado correctamente",
   "admin/admin.app.abtest.form.finishTest.success": "Test A/B finalizado correctamente",
-  "admin/admin.app.abtest.form.finishTest.action": "Terminar Test A/B"
-
+  "admin/admin.app.abtest.form.finishTest.action": "Terminar Test A/B",
+  "admin/admin.app.abtest.table.label.workspaceName": "Nombre del Workspace",
+  "admin/admin.app.abtest.table.label.creation": "Fecha de creación",
+  "admin/admin.app.abtest.table.label.conversion": "Conversión",
+  "admin/admin.app.abtest.table.label.conversionLastHours": "Conversión (últimas 24h)",
+  "admin/admin.app.abtest.table.label.sessions": "Sesiones",
+  "admin/admin.app.abtest.table.label.sessionsLastHours": "Sessiones (últimas 24h)",
+  "admin/admin.app.abtest.table.label.hours": "Duración",
+  "admin/admin.app.abtest.table.label.proportion": "Proporción",
+  "admin/admin.app.abtest.table.label.type": "Tipo"
 }

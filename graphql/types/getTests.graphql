@@ -8,4 +8,15 @@ type DataResponse {
   WorkspaceA: String
   WorkspaceB: String
   Winner: String
+  ConversionA: Int
+  ConversionALast24Hours: Int
+  ConversionB: Int
+  ConversionBLast24Hours: Int
+  WorkspaceASessions: Int
+  WorkspaceBSessions: Int
+  WorkspaceASessionsLast24Hours: Int
+  WorkspaceBSessionsLast24Hours: Int
+  hours: Int
+  proportion: Int
+  type: String
 }
