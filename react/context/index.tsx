@@ -7,6 +7,7 @@ import getTestsGQL from './../graphql/getTests.gql'
 import createTestMutation from './../graphql/createTest.gql'
 import finishTestMutation from './../graphql/finishTest.gql'
 import saveDataGQL from './../graphql/saveData.gql'
+import { formatData } from "./../utils"
 
 export const ABTestContext = createContext({} as ABTestContextInterface)
 
@@ -65,9 +66,7 @@ export function ABTestProvider({ children }: ContextChildren) {
   async function getTests() {
     const dataFromQuery = await getTestsQuery.refetch()
     const response = dataFromQuery.data.getTests.data
-    //TODO: format date
-    console.log("getTests", response)
-    setTests(response)
+    setTests(formatData(response))
   }
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export function ABTestProvider({ children }: ContextChildren) {
       setLoading(false)
     }
     if (getTestsQuery.data) {
-      setTests(getTestsQuery?.data.getTests?.data)
+      setTests(formatData(getTestsQuery?.data.getTests?.data))
       setLoading(false)
     }
   }, [getTestsQuery.loading, getTestsQuery.error, getTestsQuery.data])
@@ -109,7 +108,6 @@ export function ABTestProvider({ children }: ContextChildren) {
     if (dataFinish) {
       setLoading(false);
       getTests()
-      console.log("dataFinish", dataFinish)
       setSuccess(intl.formatMessage({ id: 'admin/admin.app.abtest.form.finishTest.success' }))
     }
   }, [loadingFinish, errorFinish, dataFinish])

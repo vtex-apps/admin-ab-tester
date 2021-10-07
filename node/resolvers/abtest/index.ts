@@ -1,4 +1,3 @@
-
 export const queries = {
   getTests: async (_: unknown, __: unknown, { clients: { abtest, vbase } }: Context
   ): Promise<any> => {
@@ -11,11 +10,15 @@ export const queries = {
           ([key, value]) => element[key] = value
         );
       } catch (err) {
-        console.log("error")
+        continue
       }
     }
+    data.forEach((item: ABTest) => item.Finish = item.WorkspaceB);
+
+    console.log("data--", data)
+
     return { data: data }
-  },
+  }
 }
 
 export const mutations = {

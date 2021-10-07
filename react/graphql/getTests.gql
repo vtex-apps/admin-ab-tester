@@ -16,6 +16,7 @@ query getTests{
       hours
       proportion
       type
+      Finish
     }
     status
   }

@@ -31,4 +31,5 @@ export const statusToError = (e: AxiosError) => {
   }
 }
 
-export const MAX_PRODUCTS_PER_CATEGORY = 50
+
+
