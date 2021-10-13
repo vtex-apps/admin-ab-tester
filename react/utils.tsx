@@ -2,9 +2,7 @@ import React from 'react'
 import {
   Button,
 } from 'vtex.styleguide'
-import { useIntl } from 'react-intl'
 import { FormattedMessage } from 'react-intl'
-
 
 import { useABTestContext } from './context/'
 
@@ -22,33 +20,30 @@ export const checkWorkspaceName = (name: string) => {
 };
 
 export const formatData = (data: any) => {
-  const newData: any = [];
+  const flattenData: any = [];
 
   const keys = Object.keys(data[0]);
 
   keys.forEach((key) => {
     const aux: any = {};
-    const masterKeys = ['WorkspaceA', 'ConversionA', 'ConversionALast24Hours', 'WorkspaceASessions', 'WorkspaceASessionsLast24Hours']
+    const masterKeys = ['ConversionA', 'ConversionALast24Hours', 'WorkspaceASessions', 'WorkspaceASessionsLast24Hours']
     data.forEach((item: any) => {
-      if (key !== '__typename' && key !== 'Finish') {
+      if (key !== '__typename' && key !== 'Finish' && key !== '[[Prototype]]' && key !== 'WorkspaceA' && key !== 'WorkspaceB') {
         if (masterKeys.includes(key)) {
-          aux[item.WorkspaceB] = null
           aux[item.WorkspaceA] = item[key]
+          aux[item.WorkspaceB] = null
         } else {
-          aux[item.WorkspaceB] = item[key]
           aux[item.WorkspaceA] = null
+          aux[item.WorkspaceB] = item[key]
         }
       }
-
       if (key === 'Finish') (aux[item.WorkspaceB] = { type: 'finish', value: item[key] })
-      if (key !== '__typename') aux.Value = { type: 'key', value: key }
+      if (key !== '__typename' && key !== "WorkspaceB" && key !== "WorkspaceA") aux.Value = { type: 'key', value: key }
     });
-    newData.push(aux);
+    flattenData.push(aux);
   });
 
   const toUnify = [
-    'WorkspaceA',
-    'WorkspaceB',
     'ConversionA',
     'ConversionB',
     'ConversionALast24Hours',
@@ -59,15 +54,15 @@ export const formatData = (data: any) => {
     'WorkspaceBSessionsLast24Hours'
   ]
 
-  const newData2: any = newData.filter((item: any) => {
-    return !toUnify.includes(item?.Value?.value)
+  const formattedData: any = flattenData.filter((item: any) => {
+    return !toUnify.includes(item?.Value?.value) && Object.keys(item).length !== 0
   });
 
-  for (let i = 0; i < toUnify.length; i = i + 2) {
-    merge(newData.find((item: any) => item.Value?.value === toUnify[i]), newData.find((item: any) => item.Value?.value === toUnify[i + 1]))
-  }
+  const newData = formattedData.slice(0, -1)
 
-  newData2.forEach((item: any) => console.log("item---", item))
+  for (let i = 0; i < toUnify.length; i = i + 2) {
+    merge(flattenData.find((item: any) => item.Value?.value === toUnify[i]), flattenData.find((item: any) => item.Value?.value === toUnify[i + 1]))
+  }
 
   function merge(obj1: any, obj2: any) {
     const answer: any = {}
@@ -81,69 +76,63 @@ export const formatData = (data: any) => {
     }
     if (obj1?.Value) {
       switch (obj1.Value?.value) {
-        case 'WorkspaceA' || 'WorkspaceB': {
-          answer.Value.value = 'Workspace'
-          newData2.push(answer)
-          break
-        }
         case 'ConversionA' || 'ConversionB': {
           answer.Value.value = 'Conversion'
-          newData2.push(answer)
+          newData.push(answer)
           break
         }
         case 'ConversionALast24Hours' || 'ConversionBLast24Hours': {
           answer.Value.value = 'ConversionLast24Hours'
-          newData2.push(answer)
+          newData.push(answer)
           break
         }
         case 'WorkspaceASessions' || 'WorkspaceBSessions': {
           answer.Value.value = 'WorkspaceSessions'
-          newData2.push(answer)
+          newData.push(answer)
           break
         }
         case 'WorkspaceASessionsLast24Hours' || 'WorkspaceBSessionsLast24Hours': {
           answer.Value.value = 'workspacesessionslast24hours'
-          newData2.push(answer)
+          newData.push(answer)
           break
         }
       }
     }
     return answer
   }
-  console.log("newData2---", newData2)
-  return newData2
+  newData.push(formattedData[formattedData.length - 1])
+  console.log("newData", newData)
+  return newData
 }
 
 
 
-export const getPropertiesForSchema = (tests: any) => {
-  const intl = useIntl()
-
+export const getPropertiesForSchema = (abtests: any) => {
   const { finishTest } = useABTestContext()
 
   const properties: any = {};
   properties.Value = {
     name: {
-      minWidth: 200,
-      title: 'Name'
+      minWidth: 400,
+      title: ''
     },
   }
-  tests && Object.keys(tests[0]).forEach(
+  abtests && Object.keys(abtests[0]).forEach(
     (item) => {
       (properties[item] = {
         minWidth: 200, title: item, cellRenderer: ({ cellData }: { cellData: any }) => {
           return (
             <>
               {
-                cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}> Finish </Button> : cellData?.type === 'key' ? <FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /> : cellData
+                cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}> Finish </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData
               }
-            </>)
+            </>
+          )
         },
       })
     }
 
   );
-
 
   return properties
 }

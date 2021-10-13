@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const queries = {
   getTests: async (_: unknown, __: unknown, { clients: { abtest, vbase } }: Context
   ): Promise<any> => {
@@ -13,10 +15,11 @@ export const queries = {
         continue
       }
     }
-    data.forEach((item: ABTest) => item.Finish = item.WorkspaceB);
-
-    console.log("data--", data)
-
+    data.forEach((item: ABTest) => {
+      console.log("moment)", moment(item.ABTestBeginning).format("DD/MM/YYYY"))
+      item.ABTestBeginning = moment(item.ABTestBeginning).format("DD/MM/YYYY")
+      item.Finish = item.WorkspaceB
+    });
     return { data: data }
   }
 }
