@@ -14,7 +14,7 @@ import { useABTestContext } from '../../context'
 import { checkWorkspaceName, getPropertiesForSchema } from "./../../utils"
 
 const ABTestTable = () => {
-  const { tests, handleNewModal, modalOpen, createNewTest, error, setError, success, clearGeneralState, loading, finishTest } = useABTestContext()
+  const { tests, handleNewModal, modalOpen, createNewTest, error, setError, success, clearGeneralState, loading, emptyMessage } = useABTestContext()
 
   const [newTest, setNewTest] = useState<NewTest>({
     name: "",
@@ -30,9 +30,11 @@ const ABTestTable = () => {
   }
 
   const intl = useIntl()
+
   const defaultSchema = {
     properties: getPropertiesForSchema(tests)
   }
+
 
   const selectOptions = [
     { value: 'revenue', label: 'Revenue' },
@@ -45,7 +47,6 @@ const ABTestTable = () => {
     }
     setNewTest((prevState: any) => ({ ...prevState, [key]: value }))
   }
-
   return (
     <>
       <div className='mv4'>
@@ -65,6 +66,7 @@ const ABTestTable = () => {
         schema={defaultSchema}
         items={tests}
         loading={loading}
+        emptyStateLabel={emptyMessage}
         toolbar={{
           newLine: {
             label: intl.formatMessage({

@@ -29,6 +29,7 @@ declare global {
     success: string
     setError: (error: string) => void
     clearGeneralState: () => void
+    emptyMessage: string
   }
   interface GeneralState {
     loading: boolean,

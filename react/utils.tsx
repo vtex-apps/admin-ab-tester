@@ -101,26 +101,25 @@ export const formatData = (data: any) => {
     return answer
   }
   newData.push(formattedData[formattedData.length - 1])
-  console.log("newData", newData)
   return newData
 }
 
 
 
-export const getPropertiesForSchema = (abtests: any) => {
+export const getPropertiesForSchema = (tests: any) => {
   const { finishTest } = useABTestContext()
 
   const properties: any = {};
   properties.Value = {
     name: {
-      minWidth: 400,
-      title: ''
+      title: '',
+      width: 600
     },
   }
-  abtests && Object.keys(abtests[0]).forEach(
+  tests.length && Object.keys(tests[0]).forEach(
     (item) => {
       (properties[item] = {
-        minWidth: 200, title: item, cellRenderer: ({ cellData }: { cellData: any }) => {
+        title: item, width: 300, cellRenderer: ({ cellData }: { cellData: any }) => {
           return (
             <>
               {

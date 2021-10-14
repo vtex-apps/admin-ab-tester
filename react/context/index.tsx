@@ -1,6 +1,5 @@
 import React, { useState, createContext, useEffect, useContext } from 'react'
-// import { useRuntime } from 'vtex.render-runtime'
-import { useQuery, useMutation } from 'react-apollo'
+import { useMutation, useLazyQuery } from 'react-apollo'
 import { useIntl } from 'react-intl'
 
 import getTestsGQL from './../graphql/getTests.gql'
@@ -14,14 +13,15 @@ export const ABTestContext = createContext({} as ABTestContextInterface)
 export const useABTestContext = () => useContext(ABTestContext)
 
 export function ABTestProvider({ children }: ContextChildren) {
-  // const runtime = useRuntime()
   const intl = useIntl()
   const [saveData] = useMutation(saveDataGQL)
-  const getTestsQuery = useQuery(getTestsGQL)
-  const [tests, setTests] = useState<ABTest[]>()
+  const [getTestsQuery, { data: dataGetTests, loading: loadingGetTests, refetch: refetchGetTests }] = useLazyQuery(getTestsGQL)
+
+  const [tests, setTests] = useState<ABTest[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
+  const [emptyMessage, setEmptyMessage] = useState("")
 
   const [testToCreate, setTestToCreate] = useState<NewTest>({
     name: "",
@@ -63,22 +63,25 @@ export function ABTestProvider({ children }: ContextChildren) {
     setLoading(false)
   }
 
-  async function getTests() {
-    const dataFromQuery = await getTestsQuery.refetch()
-    const response = dataFromQuery.data.getTests.data
-    setTests(formatData(response))
-  }
 
   useEffect(() => {
-    getTestsQuery.loading && setLoading(true)
-    if (getTestsQuery.error) {
-      setLoading(false)
+    getTestsQuery()
+  }, [])
+
+  useEffect(() => {
+    loadingGetTests && setLoading(true)
+    if (dataGetTests) {
+      if (dataGetTests.getTests?.status === 201) {
+        setTests(formatData(dataGetTests.getTests?.data))
+        setLoading(false)
+      } else {
+        setLoading(false)
+        setTests([])
+        setEmptyMessage(dataGetTests.getTests?.error)
+      }
     }
-    if (getTestsQuery.data) {
-      setTests(formatData(getTestsQuery?.data.getTests?.data))
-      setLoading(false)
-    }
-  }, [getTestsQuery.loading, getTestsQuery.error, getTestsQuery.data])
+  }, [dataGetTests])
+
 
   const createNewTest = (newTest: NewTest) => {
     createTest({ variables: { workspace: newTest.name, proportion: Number(newTest.proportion), hours: Number(newTest.hours), type: newTest.type } })
@@ -91,10 +94,12 @@ export function ABTestProvider({ children }: ContextChildren) {
 
   useEffect(() => {
     loadingCreate && setLoading(true)
-    errorCreate && setError(errorCreate.graphQLErrors[0].extensions?.exception?.response?.data)
+    if (errorCreate) {
+      setError(errorCreate.graphQLErrors[0].extensions?.exception?.response?.data)
+    }
     if (dataCreate) {
       setLoading(false);
-      getTests()
+      refetchGetTests()
       setSuccess(intl.formatMessage({ id: 'admin/admin.app.abtest.form.createTest.success' }))
       handleNewModal(false, "CREATE")
       //if the test is successfully created we save the data in vbase to show it in the table
@@ -104,10 +109,12 @@ export function ABTestProvider({ children }: ContextChildren) {
 
   useEffect(() => {
     loadingFinish && setLoading(true)
-    errorFinish && setError(errorFinish.graphQLErrors[0].extensions?.exception?.response?.data)
+    if (errorFinish) {
+      setError(errorFinish.graphQLErrors[0].extensions?.exception?.response?.data)
+    }
     if (dataFinish) {
       setLoading(false);
-      getTests()
+      refetchGetTests()
       setSuccess(intl.formatMessage({ id: 'admin/admin.app.abtest.form.finishTest.success' }))
     }
   }, [loadingFinish, errorFinish, dataFinish])
@@ -124,7 +131,8 @@ export function ABTestProvider({ children }: ContextChildren) {
         loading,
         success,
         setError,
-        clearGeneralState
+        clearGeneralState,
+        emptyMessage
       }}
     >
       {children}

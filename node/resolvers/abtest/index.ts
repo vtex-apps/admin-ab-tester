@@ -4,23 +4,27 @@ export const queries = {
   getTests: async (_: unknown, __: unknown, { clients: { abtest, vbase } }: Context
   ): Promise<any> => {
     const { data }: any = await abtest.getTests()
-    for await (let element of data) {
-      try {
-        const extraData = await vbase.getJSON<string>('abtesterData', element.WorkspaceB)
-        const parsedExtraData = JSON.parse(extraData.replace(/'/g, '"'));
-        Object.entries(parsedExtraData).forEach(
-          ([key, value]) => element[key] = value
-        );
-      } catch (err) {
-        continue
+    if (data.length) {
+      for await (let element of data) {
+        try {
+          const extraData = await vbase.getJSON<string>('abtesterData', element.WorkspaceB)
+          const parsedExtraData = JSON.parse(extraData.replace(/'/g, '"'));
+          Object.entries(parsedExtraData).forEach(
+            ([key, value]) => element[key] = value
+          );
+        } catch (err) {
+          continue
+        }
       }
+      data.forEach((item: ABTest) => {
+        item.ABTestBeginning = moment(item.ABTestBeginning).format("DD/MM/YYYY")
+        item.Finish = item.WorkspaceB
+      });
+      return { status: 201, data: data, error: "" }
+    } else {
+      return { status: 404, data: [""], error: data?.response?.data?.message }
     }
-    data.forEach((item: ABTest) => {
-      console.log("moment)", moment(item.ABTestBeginning).format("DD/MM/YYYY"))
-      item.ABTestBeginning = moment(item.ABTestBeginning).format("DD/MM/YYYY")
-      item.Finish = item.WorkspaceB
-    });
-    return { data: data }
+
   }
 }
 

@@ -1,6 +1,7 @@
 type GetTestsResponse{
   data: [DataResponse]
-  status: String
+  status: Int
+  error: String
 }
 
 type DataResponse {

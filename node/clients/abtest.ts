@@ -8,12 +8,17 @@ export default class ABtest extends ExternalClient {
   }
 
   public async getTests() {
-    const res = await this.http.getRaw(`/${this.context.account}/master/_v/private/abtesting/status`, {
-      headers: {
-        Authorization: `Bearer ${this.context.adminUserAuthToken}`,
-      },
-    })
-    return res
+    try {
+      const res = await this.http.getRaw(`/${this.context.account}/master/_v/private/abtesting/status`, {
+        headers: {
+          Authorization: `Bearer ${this.context.adminUserAuthToken}`,
+        },
+      })
+      return res
+    } catch (err) {
+      return { data: err }
+    }
+
   }
 
   public async initialize(workspace: string, proportion: number, hours: number, type: string) {
@@ -31,7 +36,7 @@ export default class ABtest extends ExternalClient {
   }
 
   public async finishTest(workspace: string) {
-    return await this.http.getRaw(`/${this.context.account}/master/_v/private/abtesting/finish/${workspace}`, {
+    return await this.http.delete(`/${this.context.account}/master/_v/private/abtesting/finish/${workspace}`, {
       headers: {
         Authorization: `Bearer ${this.context.adminUserAuthToken}`,
       },
