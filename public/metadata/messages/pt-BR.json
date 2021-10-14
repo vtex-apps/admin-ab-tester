@@ -1,0 +1,16 @@
+{
+  "name": "Promotion Cloner",
+  "headline": "Clone promoções de um ambiente para outro.",
+  "overview": "O aplicativo Promotion Cloner permite clonar promoções de um ambiente para outro, em arquitetura master + white labels e marketplaces. Você vai economizar tempo já que não deve criar promoções em cada white label, você pode cloná-los! Melhore a integração do seu arquitetura clonando promoções para as lojas que você quiser!",
+  "features": [
+    "Receba promoções de suas lojas",
+    "Clonar promoções",
+    "Clonar promoções para uma lista de lojas",
+    "Integração com arquitetura Master + White Label",
+    "Integração com Marketplaces de arquitetura"
+  ],
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://support.vtex.com/hc/requests"
+  }
+}

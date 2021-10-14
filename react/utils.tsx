@@ -101,6 +101,7 @@ export const formatData = (data: any) => {
     return answer
   }
   newData.push(formattedData[formattedData.length - 1])
+
   return newData
 }
 
@@ -116,20 +117,19 @@ export const getPropertiesForSchema = (tests: any) => {
       width: 600
     },
   }
-  tests.length && Object.keys(tests[0]).forEach(
-    (item) => {
-      (properties[item] = {
-        title: item, width: 300, cellRenderer: ({ cellData }: { cellData: any }) => {
-          return (
-            <>
-              {
-                cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}> Finish </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData
-              }
-            </>
-          )
-        },
-      })
+  tests.length && Object.keys(tests[0]).forEach((item) => {
+    properties[item] = {
+      title: item, width: item!== "Value" ? 250 : 300, cellRenderer: ({ cellData }: { cellData: any }) => {
+        return (
+          <>
+            {
+              cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}> Finish </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData
+            }
+          </>
+        )
+      },
     }
+  }
 
   );
 

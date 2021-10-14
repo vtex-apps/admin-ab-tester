@@ -1,0 +1,14 @@
+{
+  "name": "AB Tester",
+  "headline": "Create, list and finish AB tests.",
+  "overview": "The AB Tester is an Admin application allows you to create, list and finish AB Tests.",
+  "features": [
+    "Get current AB Tests",
+    "Finish an AB Test",
+    "Create a AB Test"
+  ],
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://support.vtex.com/hc/requests"
+  }
+}
