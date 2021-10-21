@@ -1,6 +1,6 @@
 {
-  "admin/admin-abtest.navigation.label": "AB Tests",
-  "admin/admin.app.abtest.title": "Admin AB Tests",
+  "admin/admin-abtest.navigation.label": "AB Tester",
+  "admin/admin.app.abtest.title": "AB Tester",
   "admin/admin.app.abtest.form.label.winnerLabel": "Ganador",
   "admin/admin.app.abtest.form.label.createTestAB": "Crear Nuevo Test AB",
   "admin/admin.app.abtest.form.label.proportion": "Proporción del tráfico",
@@ -26,5 +26,6 @@
   "admin/admin.app.abtest.table.label.conversionb": "Conversión B",
   "admin/admin.app.abtest.table.label.conversionlast24hours": "Conversión (últimas 24h)",
   "admin/admin.app.abtest.table.label.workspacesessions": "Sesiones Workspace",
-  "admin/admin.app.abtest.table.label.workspacesessionslast24hours": "Sesiones Workspace (últimas 24h)"
+  "admin/admin.app.abtest.table.label.workspacesessionslast24hours": "Sesiones Workspace (últimas 24h)",
+  "admin/admin.app.abtest.table.label.finishLabel": "Finalizar"
 }

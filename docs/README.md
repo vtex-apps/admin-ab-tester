@@ -1,28 +1,57 @@
-# [ WORK IN PROGRESS ] Admin Example
+📢 Use this project, [contribute](https://github.com/{OrganizationName}/{AppName}) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-An example admin app that adds a menu button to the admin sidebar.
+# AB Tester
 
-# PREVIEW NOTICE :construction:
+<!-- DOCS-IGNORE:start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- DOCS-IGNORE:end -->
 
-We're working on the **admin builder**, which will allow you to define two files: `admin/routes.json` file with everything you need to create an admin interface (routes paths and components), and `admin/navigation.json` which alows your admin app to insert itself in the sidebar navigation. This is a temporary example!
+The AB Tester is an admin app that allows you to list, create and finish ab tests.
 
-### How to develop admins
+<img width="1428" alt="Captura de Pantalla 2021-10-21 a la(s) 11 40 18" src="https://user-images.githubusercontent.com/36748003/138300964-63bc3545-efd7-435c-acd6-3e3e3a35b285.png">
 
-1. Admins always declare routes in `/admin/app/<route>`
+---- 
+## Configuration 
 
-2. Declare the `admin` builder in your manifest
+1. Using your terminal and the [VTEX IO Toolbelt](https://vtex.io/docs/recipes/development/vtex-io-cli-installment-and-command-reference), log into the desired VTEX account.
+2. Run `vtex install vtexarg.abtester` on the account you're working on.
 
-3. When installed, the user navigates to `/admin/<route>`, but your app runs in an iframe that points to `/admin/app/<route>`.
+## Usage
 
-4. You can develop directly in the `/admin/app` route for convenience, but don't forget to test it inside the iframe. :)
+Go to `https://{{account}}.myvtex.com/admin/ab-test` or search for the app in the admin sidebar
+
+## Create an ab test
+ * **Workspace Name**
+    
+    Select the production workspace in which you've already performed all desired changes
+
+* **Traffic Proportion**
+    
+    You must answer this question with any whole number between 0 and 10000. For example, if you answer 9000, you'll set 90% of the traffic to the master workspace.
+
+* **Amount of Time**
+    
+    What's the amount of time respecting the restriction?.
+    This amount of time refers to the amount of time (in hours) during which the proportion of traffic specified in the previous question will be kept constant. After that, the test will start to have the traffic proportions updated by the A/B testing system. The system does so by analyzing each workspace's performance and sending more traffic to the best-performing ones. You can either:
+
+    * Answer 0 to automatically proceed with the A/B test. In this case, VTEX IO will automatically split your website traffic between workspaces, leaving 50% of your store's traffic with the master workspace while migrating the other 50% to the production workspace being tested. The platform will then automatically balance traffic every 3 minutes according to the conversion rate that arises. This means that the workspace with less conversion will progressively relay its traffic to the workspace with more conversion. Notice that the test, although automatic, will not end by itself. It's important to evaluate and interpret the test status daily.
+
+    * Answer with the number of hours you want to keep constant the proportion of traffic previously specified. It's important for the test to be able to extract the maximum amount of data during intense operational periods. At the same time, the test shouldn't overextend to be deleterious to users navigating the workspace with the poorer experience.
+
+* **Type**
+    
+  Revenue or Conversion
+
+## Comparative results
+* **Conversion** - Conversion rate percentage that each workspace displayed during the test.
+* **Conversion (last 24hrs) ** - Conversion rate percentage that each workspace displayed during the test last 24hrs.
+* **N. of Sessions** - Total number of sessions for each workspace since the beginning of the test.
+* **N. of Sessions (last 24hrs)** - Number of sessions for each workspace during the test's last 24hrs.
 
 
-### Quickstart
+---- 
 
-1. Clone this repo
-
-2. `yarn --cwd react/` for code completion
-
-3. `vtex link`
-
-4. Navigate to `workspace--account.myvtex.com/admin/app/example`
+Documentation: 
+- [Tests AB](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-running-native-ab-testing)

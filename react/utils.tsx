@@ -123,7 +123,7 @@ export const getPropertiesForSchema = (tests: any) => {
         return (
           <>
             {
-              cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}> Finish </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData
+              cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}><FormattedMessage id={`admin/admin.app.abtest.table.label.finishLabel`} /> </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData
             }
           </>
         )
