@@ -17,6 +17,9 @@ The AB Tester is an admin app that allows you to list, create and finish ab test
 
 1. Using your terminal and the [VTEX IO Toolbelt](https://vtex.io/docs/recipes/development/vtex-io-cli-installment-and-command-reference), log into the desired VTEX account.
 2. Run `vtex install vtexarg.abtester` on the account you're working on.
+3. You also need to install the abtester if isn't installed yet:
+  
+    Run `vtex install vtex.ab-tester` on the account you're working on.
 
 ## Usage
 
