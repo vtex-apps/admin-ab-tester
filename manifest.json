@@ -2,8 +2,8 @@
   "name": "abtester",
   "vendor": "vtexarg",
   "version": "1.0.0",
-  "title": "Example Admin App",
-  "description": "",
+  "title": "AB Tester",
+  "description": "AB Tester Admin App",
   "mustUpdateAt": "2022-08-28",
   "scripts": {
     "postreleasy": "vtex publish"
