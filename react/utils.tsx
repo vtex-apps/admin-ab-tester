@@ -38,6 +38,7 @@ export const formatData = (data: any) => {
         }
       }
       if (key === 'Finish') (aux[item.WorkspaceB] = { type: 'finish', value: item[key] })
+      if (key === 'proportion') (aux[item.WorkspaceB] = { type: 'proportion', value: item[key] })
       if (key !== '__typename' && key !== "WorkspaceB" && key !== "WorkspaceA") aux.Value = { type: 'key', value: key }
     });
     flattenData.push(aux);
@@ -119,11 +120,11 @@ export const getPropertiesForSchema = (tests: any) => {
   }
   tests.length && Object.keys(tests[0]).forEach((item) => {
     properties[item] = {
-      title: item, width: item!== "Value" ? 250 : 300, cellRenderer: ({ cellData }: { cellData: any }) => {
+      title: item, width: item !== "Value" ? 250 : 300, cellRenderer: ({ cellData }: { cellData: any }) => {
         return (
           <>
             {
-              cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}><FormattedMessage id={`admin/admin.app.abtest.table.label.finishLabel`} /> </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData
+              cellData?.type === 'finish' ? <Button onClick={() => finishTest(cellData.value)}><FormattedMessage id={`admin/admin.app.abtest.table.label.finishLabel`} /> </Button> : cellData?.type === 'key' ? <span className="b c-muted-2"><FormattedMessage id={`admin/admin.app.abtest.table.label.${cellData.value.toLowerCase()}`} /></span> : cellData?.type === 'proportion' ? <p>%{cellData.value}</p> : cellData
             }
           </>
         )

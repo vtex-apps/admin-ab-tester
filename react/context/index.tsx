@@ -84,6 +84,7 @@ export function ABTestProvider({ children }: ContextChildren) {
 
 
   const createNewTest = (newTest: NewTest) => {
+    newTest.proportion = (10000 - newTest.proportion) / 100
     createTest({ variables: { workspace: newTest.name, proportion: Number(newTest.proportion), hours: Number(newTest.hours), type: newTest.type } })
     setTestToCreate(newTest)
   }
