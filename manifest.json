@@ -1,7 +1,7 @@
 {
   "name": "abtester",
   "vendor": "vtexarg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "AB Tester",
   "description": "AB Tester Admin App",
   "mustUpdateAt": "2022-08-28",
