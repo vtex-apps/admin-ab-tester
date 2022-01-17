@@ -171,7 +171,7 @@ const ABTestTable = () => {
           </div>
           <div className={'mv4'}>
             <Button disabled={!isValid()} variation="primary" onClick={() => createNewTest(newTest)}>
-              <FormattedMessage id="admin/admin.app.abtest.modal.save" />
+              <FormattedMessage id="admin/admin.app.abtest.form.saveButton" />
             </Button>
           </div>
         </div>
