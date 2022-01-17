@@ -9,6 +9,7 @@
   "admin/admin.app.abtest.form.label.invalidWorkspaceName": "No es un nombre de workspace válido. Utilice solo letras y números en minúscula",
   "admin/admin.app.abtest.form.createTest.success": "Test A/B creado correctamente",
   "admin/admin.app.abtest.form.finishTest.success": "Test A/B finalizado correctamente",
+  "admin/admin.app.abtest.form.saveButton": "Guardar",
   "admin/admin.app.abtest.table.label.finish": "Terminar Test A/B",
   "admin/admin.app.abtest.table.label.conversionLastHours": "Conversión (últimas 24h)",
   "admin/admin.app.abtest.table.label.sessions": "Sesiones",

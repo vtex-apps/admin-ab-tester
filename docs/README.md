@@ -58,3 +58,25 @@ Go to `https://{{account}}.myvtex.com/admin/ab-test` or search for the app in th
 
 Documentation: 
 - [Tests AB](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-running-native-ab-testing)
+
+
+----
+
+## Contributors ✨
+
+Thanks goes to these wonderful people:
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/tomymehdi"><img src="https://avatars.githubusercontent.com/u/774112?v=4" width="100px;" alt=""/><br /><sub><b>Tomás Alfredo Mehdi</b></sub></a><br /><a href="https://github.com/vtex-apps/admin-ab-tester/commits?author=tomymehdi" title="Code">💻</a></td>
+  </tr>
+</table>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
+
+<!-- DOCS-IGNORE:end -->

@@ -9,6 +9,7 @@
   "admin/admin.app.abtest.form.label.invalidWorkspaceName": "That's not a valid workspace name. Please use only lowercase letters and numbers",
   "admin/admin.app.abtest.form.createTest.success": "A/B Test beginning saved successfully",
   "admin/admin.app.abtest.form.finishTest.success": "A/B Test finished successfully",
+  "admin/admin.app.abtest.form.saveButton": "Save",
   "admin/admin.app.abtest.table.label.finish": "Finish A/B Test",
   "admin/admin.app.abtest.table.label.workspaceName": "Workspace Name",
   "admin/admin.app.abtest.table.label.conversionLastHours": "Conversion (last 24h)",
