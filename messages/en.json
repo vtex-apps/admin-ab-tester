@@ -3,7 +3,7 @@
   "admin/admin.app.abtest.title": "AB Tester",
   "admin/admin.app.abtest.form.label.winnerLabel": "Winner",
   "admin/admin.app.abtest.form.label.createTestAB": "Create New AB Test",
-  "admin/admin.app.abtest.form.label.proportion": "Traffic Proportion",
+  "admin/admin.app.abtest.form.label.proportion": "Traffic Proportion for workspace (1 to 100)",
   "admin/admin.app.abtest.form.label.hours": "How many hours will last",
   "admin/admin.app.abtest.form.label.type": "Test Type",
   "admin/admin.app.abtest.form.label.invalidWorkspaceName": "That's not a valid workspace name. Please use only lowercase letters and numbers",

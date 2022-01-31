@@ -32,7 +32,7 @@ Go to `https://{{account}}.myvtex.com/admin/ab-test` or search for the app in th
 
 * **Traffic Proportion**
     
-    You must answer this question with any whole number between 0 and 10000. For example, if you answer 9000, you'll set 90% of the traffic to the master workspace.
+    You must answer this question with any whole number between 0 and 100. For example, if you answer 90, you'll set 90% of the traffic to the master workspace.
 
 * **Amount of Time**
     

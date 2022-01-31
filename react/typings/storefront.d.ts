@@ -5,6 +5,8 @@ declare global {
     children: ReactNode
   }
   interface ABTest {
+    [x: string]: any;
+    master: { type: string; value: number; };
     ABTestBeginning: string
     Winner: string
     WorkspaceA: string

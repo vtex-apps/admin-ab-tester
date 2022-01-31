@@ -47,6 +47,31 @@ const ABTestTable = () => {
     }
     setNewTest((prevState: any) => ({ ...prevState, [key]: value }))
   }
+  console.log("defaultSchema: ", defaultSchema)
+  console.log("tests: ", tests)
+  if(tests && tests.length > 0) {
+    var firstWorkspaceProportion;
+    var amountOfABTests = Object.entries(tests[3]).length - 2
+    console.log("tests3: ", tests[3])
+    tests[3].master = { type: 'proportion', value: 100 - tests[3].abtest.value }
+
+    for (const [key, value] of Object.entries(tests[3])) {
+      if(key == 'Value') {}
+      if(key == 'master'){} else {
+        if (!firstWorkspaceProportion) {
+          firstWorkspaceProportion = tests[3][key].value
+        }
+        tests[3][key] = { type: 'proportion', value: firstWorkspaceProportion / amountOfABTests }
+      }
+      console.log(`${key}: ${value}`);
+    }
+    tests[3].master = { type: 'proportion', value: 100 - firstWorkspaceProportion }
+
+  }
+  // if (tests? && tests[3]? && tests[3]['master']?){
+  //   tests[3]['master'] = { type: 'proportion', value:100 - tests[3]['abtest']['value'] }
+  // }
+
   return (
     <>
       <div className='mv4'>
@@ -119,9 +144,9 @@ const ABTestTable = () => {
                 label={intl.formatMessage({
                   id: 'admin/admin.app.abtest.form.label.proportion',
                 })}
-                type="number"
+                type="number" min="0" max="100"
                 onChange={(ev: EventInterface): void => {
-                  handleInput("proportion", ev.target.value)
+                  handleInput("proportion", ((100 - parseInt(ev.target.value)) * 100).toString())
                 }}
               />
             </div>
