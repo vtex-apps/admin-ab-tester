@@ -61,7 +61,7 @@ const ABTestTable = () => {
         if (!firstWorkspaceProportion) {
           firstWorkspaceProportion = tests[3][key].value
         }
-        tests[3][key] = { type: 'proportion', value: firstWorkspaceProportion / amountOfABTests }
+        tests[3][key] = { type: 'proportion', value: (firstWorkspaceProportion / amountOfABTests).toFixed(2) }
       }
       console.log(`${key}: ${value}`);
     }
