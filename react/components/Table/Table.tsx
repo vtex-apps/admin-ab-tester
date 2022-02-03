@@ -47,30 +47,30 @@ const ABTestTable = () => {
     }
     setNewTest((prevState: any) => ({ ...prevState, [key]: value }))
   }
-  console.log("defaultSchema: ", defaultSchema)
-  console.log("tests: ", tests)
+
+  var proportionTableIndex = 3;
+
+
   if(tests && tests.length > 0) {
     var firstWorkspaceProportion;
-    var amountOfABTests = Object.entries(tests[3]).length - 2
-    console.log("tests3: ", tests[3])
-    tests[3].master = { type: 'proportion', value: 100 - tests[3].abtest.value }
+    var amountOfABTests = Object.entries(tests[proportionTableIndex]).length - 2
+    var [keys] = Object.entries(tests[proportionTableIndex])
+    console.log("keys: ", keys)
 
-    for (const [key, value] of Object.entries(tests[3])) {
-      if(key == 'Value') {}
-      if(key == 'master'){} else {
+    for (const [key, value] of Object.entries(tests[proportionTableIndex])) {
+      if(key == 'master' || key == 'Value'){} else {
         if (!firstWorkspaceProportion) {
-          firstWorkspaceProportion = tests[3][key].value
+          firstWorkspaceProportion = tests[proportionTableIndex][key].value
         }
-        tests[3][key] = { type: 'proportion', value: (firstWorkspaceProportion / amountOfABTests).toFixed(2) }
+        console.log("object in for: ", tests[proportionTableIndex][key])
+
+        tests[proportionTableIndex][key] = { type: 'proportion', value: (firstWorkspaceProportion / amountOfABTests).toFixed(2) }
       }
-      console.log(`${key}: ${value}`);
     }
-    tests[3].master = { type: 'proportion', value: 100 - firstWorkspaceProportion }
+    console.log("object: ", tests[proportionTableIndex])
+    tests[proportionTableIndex].master = { type: 'proportion', value: (100 - firstWorkspaceProportion).toFixed(2) }
 
   }
-  // if (tests? && tests[3]? && tests[3]['master']?){
-  //   tests[3]['master'] = { type: 'proportion', value:100 - tests[3]['abtest']['value'] }
-  // }
 
   return (
     <>
@@ -146,6 +146,8 @@ const ABTestTable = () => {
                 })}
                 type="number" min="0" max="100"
                 onChange={(ev: EventInterface): void => {
+                  console.log("int error: ", ev.target.value)
+                  console.log("int error3: ", ((100 - parseInt(ev.target.value)) * 100).toString())
                   handleInput("proportion", ((100 - parseInt(ev.target.value)) * 100).toString())
                 }}
               />

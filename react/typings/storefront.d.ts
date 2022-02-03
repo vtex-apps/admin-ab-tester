@@ -6,7 +6,6 @@ declare global {
   }
   interface ABTest {
     [x: string]: any;
-    master: { type: string; value: number; };
     ABTestBeginning: string
     Winner: string
     WorkspaceA: string
