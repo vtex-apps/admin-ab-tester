@@ -1,11 +1,11 @@
 {
   "name": "AB Tester",
-  "headline": "Crear, listar y finalizar tests AB.",
-  "overview": "La aplicación AB Tester nos permite crear, listar y finalizar tests AB.",
+  "headline": "Crea, lista y finaliza los AB test.",
+  "overview": "AB Tester te permite ejecutar diferentes versiones de tu tienda para probar ideas y mejorar la experiencia de usuario.",
   "features": [
-    "Listar tests AB",
-    "Finalizar test AB",
-    "Crear tests AB"
+    "Listar AB test",
+    "Finalizar AB test",
+    "Crear AB tests"
   ],
   "websiteURL": "https://vtex.com/",
   "support": {

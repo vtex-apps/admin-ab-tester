@@ -1,13 +1,11 @@
 {
-  "name": "Promotion Cloner",
-  "headline": "Clone promoções de um ambiente para outro.",
-  "overview": "O aplicativo Promotion Cloner permite clonar promoções de um ambiente para outro, em arquitetura master + white labels e marketplaces. Você vai economizar tempo já que não deve criar promoções em cada white label, você pode cloná-los! Melhore a integração do seu arquitetura clonando promoções para as lojas que você quiser!",
+  "name": "AB Tester",
+  "headline": "Crie, liste e finalize testes AB.",
+  "overview": "O AB Tester permite que você execute diferentes versões de sua loja para testar ideias e melhorar a experiência do usuário.",
   "features": [
-    "Receba promoções de suas lojas",
-    "Clonar promoções",
-    "Clonar promoções para uma lista de lojas",
-    "Integração com arquitetura Master + White Label",
-    "Integração com Marketplaces de arquitetura"
+    "Obter teste AB atual",
+    "Terminar um teste AB",
+    "Criar um teste AB"
   ],
   "websiteURL": "https://vtex.com/",
   "support": {

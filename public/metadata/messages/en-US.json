@@ -1,9 +1,9 @@
 {
   "name": "AB Tester",
   "headline": "Create, list and finish AB tests.",
-  "overview": "The AB Tester is an Admin application allows you to create, list and finish AB Tests.",
+  "overview": "AB Tester allows you to run different versions of your store to test ideas and improve the user experience.",
   "features": [
-    "Get current AB Tests",
+    "Get current AB Test",
     "Finish an AB Test",
     "Create a AB Test"
   ],
