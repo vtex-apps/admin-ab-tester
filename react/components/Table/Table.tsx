@@ -55,21 +55,16 @@ const ABTestTable = () => {
     var firstWorkspaceProportion;
     var amountOfABTests = Object.entries(tests[proportionTableIndex]).length - 2
     var [keys] = Object.entries(tests[proportionTableIndex])
-    console.log("keys: ", keys)
 
     for (const [key, value] of Object.entries(tests[proportionTableIndex])) {
       if(key == 'master' || key == 'Value'){} else {
         if (!firstWorkspaceProportion) {
           firstWorkspaceProportion = tests[proportionTableIndex][key].value
         }
-        console.log("object in for: ", tests[proportionTableIndex][key])
-
         tests[proportionTableIndex][key] = { type: 'proportion', value: (firstWorkspaceProportion / amountOfABTests).toFixed(2) }
       }
     }
-    console.log("object: ", tests[proportionTableIndex])
     tests[proportionTableIndex].master = { type: 'proportion', value: (100 - firstWorkspaceProportion).toFixed(2) }
-
   }
 
   return (
@@ -146,8 +141,6 @@ const ABTestTable = () => {
                 })}
                 type="number" min="0" max="100"
                 onChange={(ev: EventInterface): void => {
-                  console.log("int error: ", ev.target.value)
-                  console.log("int error3: ", ((100 - parseInt(ev.target.value)) * 100).toString())
                   handleInput("proportion", ((100 - parseInt(ev.target.value)) * 100).toString())
                 }}
               />

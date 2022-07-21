@@ -8,7 +8,6 @@ export const queries = {
       action: 'list'
     })
     const { data }: any = await abtest.getTests()
-    console.log("getTests data: ", data)
     if (data.length) {
       for await (let element of data) {
         try {
