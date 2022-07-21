@@ -1,9 +1,14 @@
 import moment from 'moment'
 
 export const queries = {
-  getTests: async (_: unknown, __: unknown, { clients: { abtest, vbase } }: Context
+  getTests: async (_: unknown, __: unknown, { vtex: { logger }, clients: { abtest, vbase } }: Context
   ): Promise<any> => {
+    logger.info({
+      message: 'admin-ab-tester',
+      action: 'list'
+    })
     const { data }: any = await abtest.getTests()
+    console.log("getTests data: ", data)
     if (data.length) {
       for await (let element of data) {
         try {
@@ -36,6 +41,10 @@ export const mutations = {
     },
     ctx: Context
   ): Promise<string> => {
+    ctx.vtex.logger.info({
+      message: 'admin-ab-tester',
+      action: 'initialize'
+    })
     return await ctx.clients.abtest.initialize(workspace, proportion, hours, type)
   },
   finishTest: async (
@@ -43,6 +52,10 @@ export const mutations = {
     { workspace }: { workspace: string },
     ctx: Context
   ): Promise<string> => {
+    ctx.vtex.logger.info({
+      message: 'admin-ab-tester',
+      action: 'finish'
+    })
     return await ctx.clients.abtest.finishTest(workspace)
   },
 }

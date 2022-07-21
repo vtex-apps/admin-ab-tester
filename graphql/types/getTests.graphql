@@ -9,10 +9,10 @@ type DataResponse {
   WorkspaceA: String
   WorkspaceB: String
   Winner: String
-  ConversionA: Int
-  ConversionALast24Hours: Int
-  ConversionB: Int
-  ConversionBLast24Hours: Int
+  ConversionA: Float
+  ConversionALast24Hours: Float
+  ConversionB: Float
+  ConversionBLast24Hours: Float
   WorkspaceASessions: Int
   WorkspaceBSessions: Int
   WorkspaceASessionsLast24Hours: Int
