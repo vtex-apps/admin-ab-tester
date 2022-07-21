@@ -3,11 +3,12 @@ import moment from 'moment'
 export const queries = {
   getTests: async (_: unknown, __: unknown, { vtex: { logger }, clients: { abtest, vbase } }: Context
   ): Promise<any> => {
+    const { data }: any = await abtest.getTests()
     logger.info({
       message: 'admin-ab-tester',
-      action: 'list'
+      action: 'list',
+      data: data,
     })
-    const { data }: any = await abtest.getTests()
     if (data.length) {
       for await (let element of data) {
         try {
