@@ -1,6 +1,6 @@
 {
   "name": "vtex.admin-example",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
