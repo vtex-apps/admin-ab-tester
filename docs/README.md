@@ -1,8 +1,3 @@
-##  ⚠️ Maintenance ⚠️
-*Starting September 1st 2022, this application will no longer be maintained by VTEX. Code is released for free under the GNU/PL Agreement for you to use and modify at your convenience. The VTEX repository shall remain unchanged with the original version.*
-
----
-
 > 📢 Use this project, [contribute](https://github.com/vtex-apps/admin-ab-tester) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # AB Tester
@@ -12,6 +7,11 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- DOCS-IGNORE:end -->
+
+##  ⚠️ Maintenance ⚠️
+*Starting June 1st 2023, this application will no longer be maintained by VTEX.*
+
+---
 
 The A/B Tester app allows you to list, start and finish A/B tests via the VTEX Admin.
 
