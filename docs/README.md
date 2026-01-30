@@ -8,10 +8,9 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- DOCS-IGNORE:end -->
 
-##  ⚠️ Maintenance ⚠️
-*Starting June 1st 2023, this application will no longer be maintained by VTEX.*
+[<i class="fa-brands fa-github"></i> Source code](https://github.com/vtex-apps/admin-ab-tester)
 
----
+> ⚠️ This app is no longer maintained by VTEX. This means support and maintenance are no longer provided.
 
 The A/B Tester app allows you to list, start and finish A/B tests via the VTEX Admin.
 
