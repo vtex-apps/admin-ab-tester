@@ -2,24 +2,21 @@
 
 # AB Tester
 
+[<i class="fa-brands fa-github"></i> Source code](https://github.com/vtex-apps/admin-ab-tester)
+
 <!-- DOCS-IGNORE:start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- DOCS-IGNORE:end -->
 
-##  ⚠️ Maintenance ⚠️
-*Starting June 1st 2023, this application will no longer be maintained by VTEX.*
-
----
+> ⚠️ This app is no longer maintained by VTEX. This means support and maintenance are no longer provided.
 
 The A/B Tester app allows you to list, start and finish A/B tests via the VTEX Admin.
 
 ![A/B Tester Settings](https://user-images.githubusercontent.com/36748003/138300964-63bc3545-efd7-435c-acd6-3e3e3a35b285.png)
 
 In the following, you'll learn how to install and use the A/B Tester app.
-
----- 
 
 ## Configuration 
 
